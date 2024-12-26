@@ -1,14 +1,13 @@
 name: flutter_boxicons_example
 description: Demonstrates how to use the flutter_boxicons plugin.
-publish_to: 'none'
+publish_to: "none"
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-
   flutter_boxicons:
     path: ../
 
