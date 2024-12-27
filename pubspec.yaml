@@ -18,6 +18,8 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^5.0.0
+  http: ^1.2.2
+
 flutter:
   fonts:
     - family: Boxicons
