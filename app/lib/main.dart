@@ -1,3 +1,4 @@
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boxicons_app/defines.dart';
 
@@ -15,8 +16,29 @@ class AppView extends StatelessWidget {
   }
 }
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  String searchQuery = '';
+
+  void filterIcons(String query) {
+    setState(() {
+      searchQuery = query;
+    });
+  }
+
+  List<Boxicon> getFilteredIcons(List<Boxicon> icons) {
+    if (searchQuery.isEmpty) return icons;
+    return icons
+        .where((icon) =>
+            icon.name.toLowerCase().contains(searchQuery.toLowerCase()))
+        .toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +46,8 @@ class HomeView extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Flutter Boxicons Demo'),
-          bottom: TabBar(
+          title: const Text('Flutter Boxicons Demo'),
+          bottom: const TabBar(
             tabs: [
               Tab(text: 'Regular'),
               Tab(text: 'Solid'),
@@ -33,47 +55,31 @@ class HomeView extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(
+        body: Column(
           children: [
-            RegularIconsView(),
-            SolidIconsView(),
-            LogoIconsView(),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                decoration: const InputDecoration(
+                  hintText: 'Search icons...',
+                  prefixIcon: Icon(Icons.search),
+                  border: OutlineInputBorder(),
+                ),
+                onChanged: filterIcons,
+              ),
+            ),
+            Expanded(
+              child: TabBarView(
+                children: [
+                  IconGridView(icons: getFilteredIcons(regularIcons)),
+                  IconGridView(icons: getFilteredIcons(solidIcons)),
+                  IconGridView(icons: getFilteredIcons(logoIcons)),
+                ],
+              ),
+            ),
           ],
         ),
       ),
-    );
-  }
-}
-
-class RegularIconsView extends StatelessWidget {
-  const RegularIconsView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return IconGridView(
-      icons: regularIcons,
-    );
-  }
-}
-
-class SolidIconsView extends StatelessWidget {
-  const SolidIconsView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return IconGridView(
-      icons: solidIcons,
-    );
-  }
-}
-
-class LogoIconsView extends StatelessWidget {
-  const LogoIconsView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return IconGridView(
-      icons: logoIcons,
     );
   }
 }
@@ -92,20 +98,45 @@ class IconGridView extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Wrap(
         children: icons.map((icon) {
-          return Card.outlined(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(icon.icon),
-                  const SizedBox(width: 12),
-                  Text(icon.name),
-                ],
-              ),
-            ),
-          );
+          return IconView(icon: icon);
         }).toList(),
+      ),
+    );
+  }
+}
+
+class IconView extends StatelessWidget {
+  final Boxicon icon;
+
+  const IconView({
+    super.key,
+    required this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        final iconName = 'Boxicons.${icon.name}';
+        FlutterClipboard.copy(iconName);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Copied $iconName to clipboard'),
+          ),
+        );
+      },
+      child: Card.outlined(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon.icon),
+              const SizedBox(width: 12),
+              Text(icon.name),
+            ],
+          ),
+        ),
       ),
     );
   }
