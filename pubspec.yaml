@@ -10,11 +10,15 @@ topics:
   - box-icons
 
 environment:
-  sdk: ">=2.12.0 <4.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+  http: ^1.2.2
 
 flutter:
   fonts:
