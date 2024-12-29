@@ -1,43 +1,35 @@
-# Flutter Boxicons
+# Boxicons Browser
 
-[Boxicons](https://boxicons.com) customization for Flutter. You can use 2K+ more Boxicons.
+A simple Flutter application that displays the complete [Boxicons](https://boxicons.com/) icon set, making it easy to browse, search, and copy icon definitions for use in your Flutter projects.
 
-## Instalation
+## Features
 
-In the `dependencies:` section of your `pubspec.yaml`, add the following line:
-
-```yaml
-flutter_boxicons: <latest_version>
-```
+- 📱 Browse the complete Boxicons collection
+- 🔍 Search icons by name
+- 📋 Click to copy icon definitions
+- 🗂️ Icons grouped by style:
+  - Regular icons (`bx_`)
+  - Solid icons (`bxs_`)
+  - Logo icons (`bxl_`)
 
 ## Usage
 
-You can use it very easily. For example: 
+### Browsing Icons
 
-```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_boxicons/flutter_boxicons.dart';
+Icons are organized into three tabs based on their style:
+- Regular: Basic line icons
+- Solid: Filled versions of icons
+- Logos: Brand and logo icons
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-        // Use Boxicons class
-        icon: Icon(Boxicons.bx_message_rounded_dots),
-        onPressed: () {
-            print('Congratulations');
-        }
-    );
-  }
-}
-```
+Each icon is displayed with its name underneath. The grid layout provides an easy-to-scan interface for finding the icon you need.
 
-## Info
+### Searching
 
-Boxicons version: 2.0.4
+Use the search bar at the top of the screen to filter icons by name.
 
-Thank you very much [Boxicons](https://boxicons.com)
+### Copying Icon Definitions
 
-## License
-
-MIT
+Simply tap on any icon to copy its Flutter definition to your clipboard. For example:
+- Regular icon: `Boxicons.bx_basketball`
+- Solid icon: `Boxicons.bxs_basketball`
+- Logo icon: `Boxicons.bxl_github`
