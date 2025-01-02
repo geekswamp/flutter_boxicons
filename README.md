@@ -4,7 +4,7 @@
 
 [Boxicons](https://boxicons.com) customization for Flutter. You can use 2K+ more Boxicons.
 
-## Instalation
+## Installation
 
 In the `dependencies:` section of your `pubspec.yaml`, add the following line:
 
