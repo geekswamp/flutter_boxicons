@@ -1,3 +1,9 @@
+## 3.2.0
+
+* Added web support in example. Thank you [@albemala](https://github.com/albemala)
+* Update icons. Thank you [@albemala](https://github.com/albemala)
+* Added test app. Thank you [@albemala](https://github.com/albemala)
+
 ## 3.1.0
 
 * Make font name consistent across all files. Thank you [@ssmgcode](https://github.com/ssmgcode)
