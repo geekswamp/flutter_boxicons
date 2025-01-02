@@ -1,6 +1,6 @@
 # Flutter Boxicons
 
-![build](https://github.com/arifai/flutter_boxicons/workflows/build/badge.svg) ![Pub Version](https://img.shields.io/pub/v/flutter_boxicons)
+![Pub Version](https://img.shields.io/pub/v/flutter_boxicons)
 
 [Boxicons](https://boxicons.com) customization for Flutter. You can use 2K+ more Boxicons.
 
